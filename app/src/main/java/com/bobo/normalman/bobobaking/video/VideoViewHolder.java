@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
  */
 
 public class VideoViewHolder extends RecyclerView.ViewHolder {
-    @BindView(R.id.video)
+    @BindView(R.id.recipe_video)
     SimpleExoPlayerView video;
 
     @Nullable

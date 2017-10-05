@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bobo.normalman.bobobaking.R;
+import com.bobo.normalman.bobobaking.idlingResource.SimpleIdlingResource;
 import com.bobo.normalman.bobobaking.model.Recipe;
 import com.bobo.normalman.bobobaking.util.ModelUtil;
 import com.bobo.normalman.bobobaking.util.RequestUtil;

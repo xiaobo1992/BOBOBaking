@@ -1,9 +1,14 @@
 package com.bobo.normalman.bobobaking;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
+import android.support.test.espresso.IdlingResource;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import com.bobo.normalman.bobobaking.idlingResource.SimpleIdlingResource;
 import com.bobo.normalman.bobobaking.recipecard.RecipeCardFragment;
 
 import butterknife.BindView;
@@ -30,5 +35,4 @@ public class MainActivity extends AppCompatActivity {
     public void setupToolbar() {
         setSupportActionBar(toolbar);
     }
-
 }

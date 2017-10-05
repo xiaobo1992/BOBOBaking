@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import com.bobo.normalman.bobobaking.R;
 import com.bobo.normalman.bobobaking.model.Recipe;
 import com.bobo.normalman.bobobaking.model.Step;
+import com.bobo.normalman.bobobaking.util.ImageUtil;
 
 /**
  * Created by xiaobozhang on 9/30/17.

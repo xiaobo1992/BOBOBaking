@@ -2,7 +2,9 @@ package com.bobo.normalman.bobobaking.description;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bobo.normalman.bobobaking.R;
@@ -19,7 +21,7 @@ public class StepDescriptionViewHolder extends RecyclerView.ViewHolder {
     TextView step;
 
     @BindView(R.id.cover)
-    LinearLayout cover;
+    RelativeLayout cover;
 
     public StepDescriptionViewHolder(View itemView) {
         super(itemView);

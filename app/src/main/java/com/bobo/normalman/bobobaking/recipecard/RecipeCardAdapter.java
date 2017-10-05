@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.bobo.normalman.bobobaking.DescriptionActivity;
 import com.bobo.normalman.bobobaking.R;
 import com.bobo.normalman.bobobaking.model.Recipe;
+import com.bobo.normalman.bobobaking.util.ImageUtil;
 import com.bobo.normalman.bobobaking.util.ModelUtil;
 import com.google.gson.reflect.TypeToken;
 
@@ -49,6 +50,7 @@ public class RecipeCardAdapter extends RecyclerView.Adapter {
                 context.startActivity(intent);
             }
         });
+        ImageUtil.loadImage(viewHolder.itemView.getContext(), viewHolder.recipeImage, recipe.image);
     }
 
     @Override

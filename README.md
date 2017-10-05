@@ -1,2 +1,2 @@
 # BOBOBaking
-This is a project for Udacity project Baking app
+This is for Udacity project Baking app

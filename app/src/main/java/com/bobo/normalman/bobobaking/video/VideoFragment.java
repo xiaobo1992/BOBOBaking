@@ -1,13 +1,10 @@
 package com.bobo.normalman.bobobaking.video;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +30,8 @@ public class VideoFragment extends Fragment {
     public static final String KEY_RECIPE = "recipe";
     public static final String KEY_STEP = "step";
     public static final String KEY_TWOPANE = "two_pane";
+    public static final String KEY_PLAYER_POSITION = "current_position";
+
     public static final String KEY_STATE = "state";
 
     public static VideoFragment newInstance(String recipe, int currentStep, boolean twoPane) {
@@ -68,14 +67,32 @@ public class VideoFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d("step destry", adapter.currentStep + "");
-        adapter.mExoPlayer.release();
+        if (adapter.mExoPlayer != null) {
+            adapter.mExoPlayer.release();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (adapter.mExoPlayer != null) {
+            adapter.mExoPlayer.release();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (adapter.mExoPlayer != null) {
+            adapter.mExoPlayer.release();
+        }
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         outState.putInt(KEY_STEP, adapter.currentStep);
         outState.putBoolean(KEY_TWOPANE, adapter.isTwoPane);
+        outState.putLong(KEY_PLAYER_POSITION, adapter.mExoPlayer.getCurrentPosition());
         super.onSaveInstanceState(outState);
     }
 
@@ -85,8 +102,10 @@ public class VideoFragment extends Fragment {
         if (savedInstanceState != null) {
             int currentStep = savedInstanceState.getInt(KEY_STEP);
             boolean isTwoPane = savedInstanceState.getBoolean(KEY_TWOPANE);
+            long currentPosition = savedInstanceState.getLong(KEY_PLAYER_POSITION);
             adapter.currentStep = currentStep;
             adapter.isTwoPane = isTwoPane;
+            adapter.currentPosition = currentPosition;
         }
     }
 }

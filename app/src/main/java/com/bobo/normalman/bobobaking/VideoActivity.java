@@ -40,7 +40,6 @@ public class VideoActivity extends AppCompatActivity {
     }
 
     public void setupToolbar() {
-        Log.d("set up toolbar", "here");
         if (getApplicationContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             setSupportActionBar(toolbar);
             getSupportActionBar().setHomeButtonEnabled(true);

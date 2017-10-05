@@ -5,7 +5,6 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,11 +36,13 @@ public class VideoAdapter extends RecyclerView.Adapter {
     int currentStep;
     boolean isTwoPane;
     SimpleExoPlayer mExoPlayer;
+    long currentPosition;
 
     public VideoAdapter(Recipe recipe, int currentStep, boolean isTwoPane) {
         this.recipe = recipe;
         this.currentStep = currentStep;
         this.isTwoPane = isTwoPane;
+        this.currentPosition = 0;
     }
 
     @Override
@@ -65,7 +66,6 @@ public class VideoAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        Log.d("adapter spte", currentStep + "");
         Step step = recipe.steps.get(currentStep);
         VideoViewHolder viewHolder = (VideoViewHolder) holder;
         if (isTwoPane || getOrientation(viewHolder.itemView.getContext()) == Configuration.ORIENTATION_PORTRAIT) {
@@ -87,7 +87,6 @@ public class VideoAdapter extends RecyclerView.Adapter {
                     nextStep();
                 }
             });
-
             viewHolder.prev.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -101,9 +100,8 @@ public class VideoAdapter extends RecyclerView.Adapter {
         }
 
         setmExoPlayer(viewHolder);
-        if (!TextUtils.isEmpty(step.thumbnailURL)) {
-            initVideoPlayer(viewHolder, Uri.parse(step.thumbnailURL));
-        } else if (!TextUtils.isEmpty(step.videoURL)) {
+
+        if (!TextUtils.isEmpty(step.videoURL)) {
             initVideoPlayer(viewHolder, Uri.parse(step.videoURL));
         }
     }
@@ -123,6 +121,7 @@ public class VideoAdapter extends RecyclerView.Adapter {
         MediaSource mediaSource = new ExtractorMediaSource(uri, new DefaultDataSourceFactory(context
                 , userAgent), new DefaultExtractorsFactory(), null, null);
         mExoPlayer.prepare(mediaSource);
+        mExoPlayer.seekTo(currentPosition);
         mExoPlayer.setPlayWhenReady(true);
     }
 
@@ -133,13 +132,16 @@ public class VideoAdapter extends RecyclerView.Adapter {
 
     public void nextStep() {
         currentStep += 1;
+        currentPosition = 0;
         mExoPlayer.release();
         notifyDataSetChanged();
     }
 
     public void prevStep() {
         currentStep -= 1;
+        currentPosition = 0;
         mExoPlayer.release();
         notifyDataSetChanged();
     }
+
 }

@@ -12,5 +12,5 @@ public class Recipe {
     public List<Step> steps;
     public List<Ingredient> ingredients;
     //public int servings;
-    //public String image;
+    public String image;
 }

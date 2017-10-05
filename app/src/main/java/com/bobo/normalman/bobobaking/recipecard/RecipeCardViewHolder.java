@@ -2,6 +2,7 @@ package com.bobo.normalman.bobobaking.recipecard;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bobo.normalman.bobobaking.R;
@@ -18,7 +19,8 @@ public class RecipeCardViewHolder extends RecyclerView.ViewHolder {
     TextView recipeName;
     @BindView(R.id.cover)
     View cover;
-
+    @BindView(R.id.recipe_image)
+    ImageView recipeImage;
     public RecipeCardViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
