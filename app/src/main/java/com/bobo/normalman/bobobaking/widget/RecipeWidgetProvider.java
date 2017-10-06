@@ -18,7 +18,6 @@ public class RecipeWidgetProvider extends AppWidgetProvider {
 
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.recipe_widget);
-        //views.setTextViewText(R.id.appwidget_text, widgetText);
 
         if (recipe != null) {
             views.setTextViewText(R.id.recipe, recipe.name);

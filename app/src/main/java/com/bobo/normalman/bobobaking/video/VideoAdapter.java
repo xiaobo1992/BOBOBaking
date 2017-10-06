@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.bobo.normalman.bobobaking.R;
 import com.bobo.normalman.bobobaking.model.Recipe;
 import com.bobo.normalman.bobobaking.model.Step;
+import com.bobo.normalman.bobobaking.util.ImageUtil;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.LoadControl;
@@ -103,6 +104,12 @@ public class VideoAdapter extends RecyclerView.Adapter {
 
         if (!TextUtils.isEmpty(step.videoURL)) {
             initVideoPlayer(viewHolder, Uri.parse(step.videoURL));
+            viewHolder.stepImage.setVisibility(View.GONE);
+            viewHolder.video.setVisibility(View.VISIBLE);
+        } else {
+            viewHolder.video.setVisibility(View.GONE);
+            viewHolder.stepImage.setVisibility(View.VISIBLE);
+            ImageUtil.loadImage(viewHolder.itemView.getContext(), viewHolder.stepImage, step.thumbnailURL);
         }
     }
 
